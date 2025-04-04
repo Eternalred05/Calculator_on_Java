@@ -38,6 +38,7 @@ public class Calculator extends JFrame {
 	private JButton button_12;
 	private JButton button_13;
 	private JButton button_14;
+	private JButton btnCalcular;
 	/**
 	 * Create the frame.
 	 */
@@ -67,6 +68,7 @@ public class Calculator extends JFrame {
 		contentPane.add(getButton_12());
 		contentPane.add(getButton_13());
 		contentPane.add(getButton_14());
+		contentPane.add(getBtnCalcular());
 	}
 	private JLabel getLblCalculator() {
 		if (lblCalculator == null) {
@@ -214,5 +216,12 @@ public class Calculator extends JFrame {
 			button_14.setBounds(126, 214, 45, 36);
 		}
 		return button_14;
+	}
+	private JButton getBtnCalcular() {
+		if (btnCalcular == null) {
+			btnCalcular = new JButton("Calcular");
+			btnCalcular.setBounds(277, 174, 89, 23);
+		}
+		return btnCalcular;
 	}
 }
