@@ -24,10 +24,10 @@ public class Calculator extends JFrame {
 	// Variables propias
 	double num1;
 	double num2;
-	String sign;
+	String sign = "";
 	String text;
 
-	//Variables Interfaz
+	//Variables de la Interfaz
 	private JPanel contentPane;
 	private JLabel lblCalculator;
 	private JLabel Ingreso;
@@ -49,6 +49,10 @@ public class Calculator extends JFrame {
 	private JButton button_14;
 	private JButton btnCalcular;
 	private JButton btnC;
+	private JLabel almacen;
+	private JButton button_15;
+	private JButton btnCe;
+	private JButton button_17;
 	/**
 	 * Create the frame.
 	 */
@@ -81,6 +85,10 @@ public class Calculator extends JFrame {
 		contentPane.add(getButton_14());
 		contentPane.add(getBtnCalcular());
 		contentPane.add(getBtnC());
+		contentPane.add(getAlmacen());
+		contentPane.add(getButton_15());
+		contentPane.add(getBtnCe());
+		contentPane.add(getButton_17());
 	}
 	private JLabel getLblCalculator() {
 		if (lblCalculator == null) {
@@ -107,7 +115,7 @@ public class Calculator extends JFrame {
 			btnInfo = new JButton("Info");
 			btnInfo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					String info = "Desarrollado por Alexandro Valdï¿½s Piï¿½eda y Gloria Santos Rosado.";
+					String info = "Desarrollado por Alexandro Valdés Piñeda y Gloria Santos Rosado.";
 					JOptionPane.showMessageDialog(null,info,"Informacion",JOptionPane.INFORMATION_MESSAGE);		
 				}
 			});
@@ -124,7 +132,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"1");
 				}
 			});
-			button.setBounds(10, 73, 45, 36);
+			button.setBounds(23, 235, 51, 36);
 		}
 		return button;
 	}
@@ -137,7 +145,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"4");
 				}
 			});
-			button_1.setBounds(10, 120, 45, 36);
+			button_1.setBounds(23, 188, 51, 36);
 		}
 		return button_1;
 	}
@@ -150,7 +158,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"7");
 				}
 			});
-			button_2.setBounds(10, 167, 45, 36);
+			button_2.setBounds(23, 141, 51, 36);
 		}
 		return button_2;
 	}
@@ -163,7 +171,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"2");
 				}
 			});
-			button_3.setBounds(65, 73, 45, 36);
+			button_3.setBounds(84, 235, 51, 36);
 		}
 		return button_3;
 	}
@@ -176,7 +184,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"5");
 				}
 			});
-			button_4.setBounds(65, 120, 45, 36);
+			button_4.setBounds(84, 188, 51, 36);
 		}
 		return button_4;
 	}
@@ -189,7 +197,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"8");
 				}
 			});
-			button_5.setBounds(65, 167, 45, 36);
+			button_5.setBounds(84, 141, 51, 36);
 		}
 		return button_5;
 	}
@@ -202,7 +210,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"3");
 				}
 			});
-			button_6.setBounds(120, 73, 45, 36);
+			button_6.setBounds(145, 235, 51, 36);
 		}
 		return button_6;
 	}
@@ -215,7 +223,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"6");
 				}
 			});
-			button_7.setBounds(120, 120, 45, 36);
+			button_7.setBounds(145, 188, 51, 36);
 		}
 		return button_7;
 	}
@@ -228,7 +236,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"9");
 				}
 			});
-			button_8.setBounds(120, 167, 45, 36);
+			button_8.setBounds(145, 141, 51, 36);
 		}
 		return button_8;
 	}
@@ -237,20 +245,26 @@ public class Calculator extends JFrame {
 			button_9 = new JButton("-");
 			button_9.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					text = Ingreso.getText();
-					if(text.isEmpty()){
-						JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
-					}
-					else {
-						sign = "-";
-						num1 = Double.parseDouble(text);
-						Ingreso.setText("");
+					if(sign.isEmpty()){
+						text = Ingreso.getText();
+						if(text.isEmpty()){
+							JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+							sign = "-";
+							num1 = Double.parseDouble(text);
+							almacen.setText(text+sign);
+							Ingreso.setText("");
+
+						}
 
 					}
+					else
+						JOptionPane.showMessageDialog(null,"Está realizando una operación ya.", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			});
 			button_9.setBackground(Color.LIGHT_GRAY);
-			button_9.setBounds(181, 214, 45, 36);
+			button_9.setBounds(206, 188, 51, 36);
 		}
 		return button_9;
 	}
@@ -259,20 +273,26 @@ public class Calculator extends JFrame {
 			button_10 = new JButton("/");
 			button_10.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					text = Ingreso.getText();
-					if(text.isEmpty()){
-						JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
-					}
-					else {
-						sign = "/";
-						num1 = Double.parseDouble(text);
-						Ingreso.setText("");
+					if(sign.isEmpty()){
+						text = Ingreso.getText();
+						if(text.isEmpty()){
+							JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+							sign = "/";
+							num1 = Double.parseDouble(text);
+							almacen.setText(text+sign);
+							Ingreso.setText("");
+
+						}
 
 					}
+					else
+						JOptionPane.showMessageDialog(null,"Está realizando una operación ya.", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			});
 			button_10.setBackground(Color.LIGHT_GRAY);
-			button_10.setBounds(181, 167, 45, 36);
+			button_10.setBounds(206, 282, 51, 36);
 		}
 		return button_10;
 	}
@@ -282,22 +302,25 @@ public class Calculator extends JFrame {
 			button_11.setBackground(Color.LIGHT_GRAY);
 			button_11.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					text = Ingreso.getText();
-					if(text.isEmpty()){
-						JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
-					}
-					else {
-						if (sign.isEmpty()) {
+					if(sign.isEmpty()){
+						text = Ingreso.getText();
+						if(text.isEmpty()){
+							JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
+						}
+						else {
 							sign = "+";
 							num1 = Double.parseDouble(text);
+							almacen.setText(text+sign);
 							Ingreso.setText("");
+
 						}
-						else 
-							JOptionPane.showMessageDialog(null,".", "Error",JOptionPane.ERROR_MESSAGE);	
+
 					}
+					else
+						JOptionPane.showMessageDialog(null,"Está realizando una operación ya.", "Error",JOptionPane.ERROR_MESSAGE);	
 				}
 			});
-			button_11.setBounds(181, 73, 45, 36);
+			button_11.setBounds(206, 141, 51, 36);
 		}
 		return button_11;
 	}
@@ -306,20 +329,26 @@ public class Calculator extends JFrame {
 			button_12 = new JButton("*");
 			button_12.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					text = Ingreso.getText();
-					if(text.isEmpty()){
-						JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
-					}
-					else {
-						sign = "*";
-						num1 = Double.parseDouble(text);
-						Ingreso.setText("");
+					if(sign.isEmpty()){
+						text = Ingreso.getText();
+						if(text.isEmpty()){
+							JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
+						}
+						else {
+							sign = "*";
+							num1 = Double.parseDouble(text);
+							almacen.setText(text+sign);
+							Ingreso.setText("");
+
+						}
 
 					}
+					else
+						JOptionPane.showMessageDialog(null,"Está realizando una operación ya.", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			});
 			button_12.setBackground(Color.LIGHT_GRAY);
-			button_12.setBounds(181, 120, 45, 36);
+			button_12.setBounds(206, 235, 51, 36);
 		}
 		return button_12;
 	}
@@ -332,7 +361,7 @@ public class Calculator extends JFrame {
 					Ingreso.setText(Ingreso.getText()+"0");
 				}
 			});
-			button_13.setBounds(65, 214, 45, 36);
+			button_13.setBounds(23, 282, 51, 36);
 		}
 		return button_13;
 	}
@@ -342,16 +371,24 @@ public class Calculator extends JFrame {
 			button_14.setBackground(Color.LIGHT_GRAY);
 			button_14.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Ingreso.setText(Ingreso.getText()+".");
+					int index = Ingreso.getText().indexOf('.');
+					if(Ingreso.getText().isEmpty()){
+						JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
+					}
+					else 
+						if(index == -1)
+							Ingreso.setText(Ingreso.getText()+".");
+						else
+							JOptionPane.showMessageDialog(null,"Ya se encuentra utilizando los valores decimales.", "Error",JOptionPane.ERROR_MESSAGE);	
 				}
 			});
-			button_14.setBounds(10, 214, 45, 36);
+			button_14.setBounds(84, 282, 51, 36);
 		}
 		return button_14;
 	}
 	private JButton getBtnCalcular() {
 		if (btnCalcular == null) {
-			btnCalcular = new JButton("Calcular");
+			btnCalcular = new JButton("=");
 			btnCalcular.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					text = Ingreso.getText();
@@ -359,22 +396,25 @@ public class Calculator extends JFrame {
 						num2 = Double.parseDouble(text);
 						switch(sign){
 						case "+":
+							almacen.setText(almacen.getText()+text);
 							Ingreso.setText(Double.toString(num1+num2));
 							sign = "";
 							break;
 						case "-":
+							almacen.setText(almacen.getText()+text);
 							Ingreso.setText(Double.toString(num1-num2));
 							sign = "";
 							break;
 						case "/":
-							if (num2 != 0) {
+							if(num2!=0){
+								almacen.setText(almacen.getText()+text);
 								Ingreso.setText(Double.toString(num1/num2));
-							} else {
-								JOptionPane.showMessageDialog(null,"No se puede dividir por cero.", "Error", JOptionPane.ERROR_MESSAGE);
-							}
-							sign = "";
+								sign = "";}
+							else
+								JOptionPane.showMessageDialog(null,"No se puede dividir entre 0.", "Error", JOptionPane.ERROR_MESSAGE);	
 							break;
 						case "*":
+							almacen.setText(almacen.getText()+text);
 							Ingreso.setText(Double.toString(num1*num2));
 							sign = "";
 							break;	
@@ -389,7 +429,7 @@ public class Calculator extends JFrame {
 			}
 					);
 			btnCalcular.setBackground(Color.LIGHT_GRAY);
-			btnCalcular.setBounds(65, 286, 89, 23);
+			btnCalcular.setBounds(145, 282, 51, 36);
 		}
 		return btnCalcular;
 	}
@@ -402,8 +442,69 @@ public class Calculator extends JFrame {
 					Ingreso.setText("");
 				}
 			});
-			btnC.setBounds(120, 214, 45, 36);
+			btnC.setBounds(145, 94, 51, 36);
 		}
 		return btnC;
+	}
+	private JLabel getAlmacen() {
+		if (almacen == null) {
+			almacen = new JLabel("");
+			almacen.setHorizontalAlignment(SwingConstants.CENTER);
+			almacen.setBounds(0, 54, 283, 14);
+		}
+		return almacen;
+	}
+	private JButton getButton_15() {
+		if (button_15 == null) {
+			button_15 = new JButton("\u2190");
+			button_15.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					String deleted = null;
+					if(Ingreso.getText().length()>0){
+						StringBuilder eliminate  = new StringBuilder(Ingreso.getText());
+						eliminate.deleteCharAt(Ingreso.getText().length() - 1);
+						deleted = eliminate.toString();
+						Ingreso.setText(deleted);
+					}
+				}
+			});
+			button_15.setBackground(Color.LIGHT_GRAY);
+			button_15.setBounds(23, 94, 51, 36);
+		}
+		return button_15;
+	}
+	private JButton getBtnCe() {
+		if (btnCe == null) {
+			btnCe = new JButton("CE");
+			btnCe.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Ingreso.setText("");
+					almacen.setText("");
+					sign = "";
+				}
+			});
+			btnCe.setBackground(Color.LIGHT_GRAY);
+			btnCe.setBounds(84, 94, 51, 36);
+		}
+		return btnCe;
+	}
+	private JButton getButton_17() {
+		if (button_17 == null) {
+			button_17 = new JButton("\u2213");
+			button_17.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					if(!Ingreso.getText().isEmpty()){
+						double change = Double.parseDouble(Ingreso.getText());
+						change *= (-1);
+						Ingreso.setText(String.valueOf(change));
+					}
+					else
+						JOptionPane.showMessageDialog(null,"Ingrese un numero primero.", "Error",JOptionPane.ERROR_MESSAGE);
+				}
+			});
+			button_17.setBackground(Color.LIGHT_GRAY);
+			button_17.setBounds(206, 94, 51, 36);
+		}
+		return button_17;
 	}
 }
