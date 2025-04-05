@@ -107,7 +107,7 @@ public class Calculator extends JFrame {
 			btnInfo = new JButton("Info");
 			btnInfo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					String info = "Desarrollado por Alexandro Valdés Piñeda y Gloria Santos Rosado.";
+					String info = "Desarrollado por Alexandro Valdï¿½s Piï¿½eda y Gloria Santos Rosado.";
 					JOptionPane.showMessageDialog(null,info,"Informacion",JOptionPane.INFORMATION_MESSAGE);		
 				}
 			});
@@ -367,7 +367,11 @@ public class Calculator extends JFrame {
 							sign = "";
 							break;
 						case "/":
-							Ingreso.setText(Double.toString(num1/num2));
+							if (num2 != 0) {
+								Ingreso.setText(Double.toString(num1/num2));
+							} else {
+								JOptionPane.showMessageDialog(null,"No se puede dividir por cero.", "Error", JOptionPane.ERROR_MESSAGE);
+							}
 							sign = "";
 							break;
 						case "*":
